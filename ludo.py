@@ -29,7 +29,7 @@ YELLOW = pygame.transform.scale(YELLOW,(40,40))
 DOTS=[RED,YELLOW,BLUE,GREEN]
 
 in_start=[]
-start_loc=(((61,141),(141,141),(61,61),(141,61)),((520,420),(420,420),(500,500),(420,500)),((141,500),(141,420),(61,500),(61,420)),((420,61),(420,141),(500,61),(500,141)))
+start_loc=(((61,141),(141,141),(61,61),(141,61)),((500,420),(420,420),(500,500),(420,500)),((141,500),(141,420),(61,500),(61,420)),((420,61),(420,141),(500,61),(500,141)))
 """
 start location of all pieces
 (red_all,yellow_all,blue_all,green_all)
@@ -41,20 +41,21 @@ blue_all ->     ●(3)    ●(1)
                 ●(2)    ●(0)
 greeen_all ->   ●(0)    ●(2)
                 ●(1)    ●(3)
-
 """
+start_pos=((40,240),(520,320),(240,520),(320,40))
+
 def draw(dots):
     GAME.blit(BACK,(0,0))
     for i in range(0,len(dots),1):
         for j in dots[i]:
             GAME.blit(DOTS[i],(j.x,j.y))
-            pygame.display.update()
-            clock.tick(10)
+            # pygame.display.update()
+            # clock.tick(10)
             # print(j.x)
-    # pygame.display.update()
+    pygame.display.update()
 def rand():
-    val=int(random.random()*6)
-    return (val if (val>0) else rand())
+    val=int(random.random()*7)
+    return (val if (val>4 and val<7) else rand())
 def sett(piece,a,b,c,d,e,f):
     piece[a].x=piece[a].y=piece[b].x=piece[c].y=61
     piece[b].y=piece[c].x=piece[d].x=piece[d].y=141
@@ -99,7 +100,18 @@ def set(dots):
         set_green(dots[3])
 
     
+def play(turn,dots):
+    dice=rand()
+    print(dice," - ",turn)
+    if dice==6:
+        for j in range(0,4,1):
+            if(dots[turn][j].x==start_loc[turn][j][0] and dots[turn][j].y==start_loc[turn][j][1]):  
+                dots[turn][j].x=start_pos[turn][0]
+                dots[turn][j].y=start_pos[turn][1]
+                break
+    
 
+        
 def main():
     running = True
     # num=int(input("Number of players (2 to 4): "))
@@ -112,6 +124,7 @@ def main():
     set(dots)
     print(dots)
     GAME.fill(BG)
+    turn=0
     while running:
 
         clock.tick(0)
@@ -120,7 +133,13 @@ def main():
             if event.type == pygame.QUIT:
                 running=False
             if event.type == pygame.KEYDOWN:
-                pass
+                if event.key == pygame.K_SPACE:
+                    if(num>1):
+                        pos=turn%num
+                        play(pos,dots)
+                    else:
+                        running=False
+                    turn+=1
 
         keypress = pygame.key.get_pressed()
         draw(dots)
