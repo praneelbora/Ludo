@@ -1,3 +1,4 @@
-w:
-    #     i.x=561-i.x
-    #     i.y=561-i.y
+en):
+#     GAME.blit(BACK,(0,0))
+#     GAME.blit(GREEN,(green.x,green.y))
+#     pygame.display.update()
