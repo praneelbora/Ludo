@@ -2,32 +2,32 @@ import pygame
 import random
 import time
 
-WIDTH, HEIGHT = 600,600
+SIDE = 600
 BG = (255,255,255)
 BLACK=(0,0,0)
 clock = pygame.time.Clock()
 
 FPS=60
 
-GAME = pygame.display.set_mode((WIDTH,HEIGHT))
+GAME = pygame.display.set_mode((SIDE,SIDE))
 
 BACK = pygame.image.load("Assets/Boards/board3.jpeg")
-BACK = pygame.transform.scale(BACK,(WIDTH,HEIGHT))
+BACK = pygame.transform.scale(BACK,(SIDE,SIDE))
 
 BLUE = pygame.image.load("Assets/Pieces/blue.png")
-BLUE = pygame.transform.scale(BLUE,(40,40))
+BLUE = pygame.transform.scale(BLUE,(SIDE/15,SIDE/15))
 
 GREEN = pygame.image.load("Assets/Pieces/green.png")
-GREEN = pygame.transform.scale(GREEN,(40,40))
+GREEN = pygame.transform.scale(GREEN,(SIDE/15,SIDE/15))
 
 RED = pygame.image.load("Assets/Pieces/red.png")
-RED = pygame.transform.scale(RED,(40,40))
+RED = pygame.transform.scale(RED,(SIDE/15,SIDE/15))
 
 YELLOW = pygame.image.load("Assets/Pieces/yellow.png")
-YELLOW = pygame.transform.scale(YELLOW,(40,40))
+YELLOW = pygame.transform.scale(YELLOW,(SIDE/15,SIDE/15))
 
 DOTS=[RED,YELLOW,BLUE,GREEN]
-
+ 
 in_start=[]
 start_loc=(((61,141),(141,141),(61,61),(141,61)),((500,420),(420,420),(500,500),(420,500)),((141,500),(141,420),(61,500),(61,420)),((420,61),(420,141),(500,61),(500,141)))
 """
@@ -43,7 +43,7 @@ greeen_all ->   ●(0)    ●(2)
                 ●(1)    ●(3)
 """
 start_pos=((40,240),(520,320),(240,520),(320,40))
-
+position=[[]]
 def draw(dots):
     GAME.blit(BACK,(0,0))
     for i in range(0,len(dots),1):
@@ -120,7 +120,7 @@ def main():
     dots=[]
     for i in range(num):
         in_start.append(4)
-        dots.append([pygame.Rect(0,0,40,40),pygame.Rect(0,0,40,40),pygame.Rect(0,0,40,40),pygame.Rect(0,0,40,40)])
+        dots.append([pygame.Rect(0,0,SIDE/15,SIDE/15),pygame.Rect(0,0,SIDE/15,SIDE/15),pygame.Rect(0,0,SIDE/15,SIDE/15),pygame.Rect(0,0,SIDE/15,SIDE/15)])
     set(dots)
     print(dots)
     GAME.fill(BG)
