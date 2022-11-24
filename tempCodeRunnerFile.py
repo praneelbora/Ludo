@@ -1,0 +1,1 @@
+locations[turn][loc[turn][j]][1]*40
