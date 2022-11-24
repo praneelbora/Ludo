@@ -1,1 +1,2 @@
-locations[turn][loc[turn][j]][1]*40
+if pos>=num:
+                            #     pos=pos%(pos-1)
