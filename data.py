@@ -3,6 +3,7 @@ SIDE=600
 BG = (255,255,255)
 BLACK=(0,0,0)
 l=SIDE/15
+colours=["Red","Yellow","Blue","Green"]
 
 loc=[]  #-1 when in home, 0 at start position respective and then goes on adding according to dice
 loc.append([-1,-1,-1,-1])
